@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>An Intro to Entity API</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="An introduction to Drupal's Entity API">
+		<meta name="author" content="blake hall">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -15,7 +15,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/custom.css">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -37,311 +38,413 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+          <h2>An Intro to Entity API</h2>
+
+          <p><a href="http://www.lullabot.com/about/team/blake-hall">Blake Hall</a></p>
+          <p><img id="lullabot-logo" src="images/lullalogo_vertical-large.png" /></p>
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+          <h2>a bit of history</h2>
+          <ul>
+            <li>Flexinode</li>
+            <li>CCK</li>
+            <li>Field API &amp; Entities</li>
+          </ul>
 				</section>
 
-				<!-- Example of nested vertical slides -->
 				<section>
+					<section>
+            <h2>terminology</h2>
+            <ul>
+              <li>Entity Type</li>
+              <li>Bundle</li>
+              <li>Property</li>
+              <li>Field</li>
+              <li>Entity</li>
+            </ul>
+					</section>
+
 					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
+            <h2>Entity Type</h2>
+            <ul>
+              <li>Node</li>
+              <li>User</li>
+              <li>Taxonomy</li>
+            </ul>
+          </section>
+
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
+            <h2>Bundle</h2>
+            <ul>
+              <li>Page</li>
+              <li>Article</li>
+              <li>Event</li>
+            <ul>
+          </section>
+
 					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
+            <h2>Property</h2>
+            <ul>
+              <li>id</li>
+              <li>vid</li>
+              <li>title</li>
+              <li>status</li>
+              <li>author</li>
+            </ul>
+
+            <aside class="notes">
+               Properties are the same across bundles within an entity type. In other words, all nodes -- regardless of type -- have an id, a title, an author, etc.
+            </aside>
+          </section>
+
+          <section>
+            <h2>Field</h2>
+            <ul>
+              <li>Body</li>
+              <li>Image</li>
+              <li>Start Time</li>
+              <li>Room</li>
+            </ul>
+
+            <aside class="notes">
+              Fields can be shared across bundles. Field configuration per-bundle is often configurable. Each field on a bundle is a field instance.
+            </aside>
+          </section>
+
+          <section>
+            <h1>Entity</h1>
+
+            <div class="box">
+              <h2>Node</h2>
+              
+              <div class="box">
+                <strong>Article</strong>
+
+                <div class="box">
+                  <div>id, vid, created</div>
+                  <div>title, author</div>
+                  <br />
+                  <div>body</div>
+                  <div>image</div>
+                  <div>tags</div>
+                </div>
+              </div>
+            </div>
+          </section>
 				</section>
 
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
-				</section>
+      <section>
+        <section>
+          <h2>Here comes the code</h2>
+        </section>
 
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
+        <section>
+          DrupalDefaultEntityController
 
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
+          <pre><code class="php">
+class DrupalDefaultEntityController implements DrupalEntityControllerInterface {
+  /**
+   * Constructor: sets basic variables.
+   */
+  public function __construct($entityType) {
+    $this->entityType = $entityType;
+    $this->entityInfo = entity_get_info($entityType);
+    $this->entityCache = array();
+    $this->hookLoadArguments = array();
+    $this->idKey = $this->entityInfo['entity keys']['id'];
 
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
+    // Check if the entity type supports revisions.
+    if (!empty($this->entityInfo['entity keys']['revision'])) {
+      $this->revisionKey = $this->entityInfo['entity keys']['revision'];
+      $this->revisionTable = $this->entityInfo['revision table'];
+    }
+    else {
+      $this->revisionKey = FALSE;
+    }
 
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> -
-						<a href="?#/themes">Default</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<section data-background="#007777">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Repeated Image Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-				</section>
-
-				<section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-					<h2>Background Transitions</h2>
-					<p>
-						Pass reveal.js the <code>backgroundTransition: 'slide'</code> config argument to make backgrounds slide rather than fade.
-					</p>
-				</section>
-
-				<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
-					<h2>Background Transition Override</h2>
-					<p>
-						You can override background transitions per slide by using <code>data-background-transition="slide"</code>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
+    // Check if the entity type supports static caching of loaded entities.
+    $this->cache = !empty($this->entityInfo['static cache']);
   }
 }
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
+          </code></pre>
+        </section>
 
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
+        <section>
+          <pre><code class="php">
+interface DrupalEntityControllerInterface {
 
-				<section>
-					<section>
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
+  public function __construct($entityType);
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
+  public function resetCache(array $ids = NULL);
 
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
+  public function load($ids = array(), $conditions = array());
+}
 
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
+          </pre></code>
+        </section>
 
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
+        <section>
+            <p>Where's the rest?</p>
+        </section>
 
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
+        <section>
+            <img src="images/entity_contrib.jpg" />  
+        </section>
 
-				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
-				</section>
+        <section>
+          Entity class
+          <pre><code class="php">
+class Entity {
+  /**
+   * Creates a new entity.
+   *
+   * @see entity_create()
+   */
+  public function __construct(array $values = array(), $entityType = NULL) {
+    if (empty($entityType)) {
+      throw new Exception('Cannot create an instance of Entity without a specified entity type.');
+    }
+    $this->entityType = $entityType;
+    $this->setUp();
+    // Set initial values.
+    foreach ($values as $key => $value) {
+      $this->$key = $value;
+    }
+  }
+}
+          </code></pre>
+        </section>
+
+        <section>
+          Entity controller class
+          
+          <pre><code class="php">
+interface EntityAPIControllerInterface extends DrupalEntityControllerInterface {
+
+  public function delete($ids);
+
+  public function invoke($hook, $entity);
+
+  public function save($entity);
+
+  public function create(array $values = array());
+
+  public function export($entity, $prefix = '');
+
+  public function import($export);
+
+  public function buildContent($entity, $view_mode = 'full', $langcode = NULL);
+
+  public function view($entities, $view_mode = 'full', $langcode = NULL, $page = NULL);
+}
+          </code></pre>
+          <aside class="notes">
+            provides methods and helper functions to support CRUD operations
+          </aside>
+        </section>
+
+      </section>
+
+      <section>
+        <section>
+          <h2>Coder Basics</h2>
+
+          <p>https://github.com/Lullabot/entity-api-demos</p>
+        </section>
+
+        <section>
+          <h2>hook_entity_info()</h2>
+          <pre><code class="php">
+function videoentity_entity_info() {
+  $info = array();
+  // Our custom video entity needs to be defined here.
+  // See http://drupal.org/node/1026420 and http://drupal.org/node/878804
+  // for more documentation.
+  $info['video'] = array(
+    // Human readable label.
+    'label' => t('Video'),
+    // Table for storing entity data, defined in hook_schema().
+    'base table' => 'videoentity_video',
+    // This helps Entity API know how to query your custom table.
+    'entity keys' => array(
+      'id' => 'id',
+      'label' => 'name',
+    ),
+   'bundles' => array(
+      'video' => array(
+        'label' => t('Video'),
+        'admin' => array(
+          'path' => 'admin/videoentity',
+          'access arguments' => array('administer video'),
+        ),
+      ),
+    ),
+    // This is a uri function provided by the Entity contrib module.
+    // It's a simple wrapper around the uri method in the controller class.
+    'uri callback' => 'entity_class_uri',
+    // These are the default controllers.
+    // 'entity class' => 'Entity',
+    'entity class' => 'VideoEntity',
+    // 'controller class' => 'DrupalDefaultEntityController',
+    // Other options provided by the EntityAPI contrib module:
+    // 'controller class' => 'EntityAPIController ',
+    // 'controller class' => 'EntityAPIControllerExportable',
+    'controller class' => 'VideoEntityController',
+     // The information below is used to extend the EntityDefaultUIController
+     'admin ui' => array(
+       'path' => 'admin/videoentity',
+       'controller class' => 'VideoEntityUIController',
+       'menu wildcard' => '%videoentity',
+       'file' => 'videoentity.admin.inc',
+     ),
+     'module' => 'videoentity',
+     // Access callback to determine permisisons.
+     'access callback' => 'videoentity_access_callback',
+ );
+
+  return $info;
+}
+          </pre></code>
+        </section>
+
+        <section>
+          <h3>hook_entity_property_info()</h3>
+          <pre><code class="php">
+function file_entity_entity_property_info() {
+  $info['file']['properties']['type'] = array(
+    'label' => t('File type'), 
+    'type' => 'token', 
+    'description' => t('The type of the file.'), 
+    'setter callback' => 'entity_property_verbatim_set', 
+    'setter permission' => 'administer files', 
+    'options list' => 'file_entity_type_get_names', 
+    'required' => TRUE, 
+    'schema field' => 'type',
+  );
+
+  return $info;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Fieldable</h2>
+          <pre><code class="php">
+function videoentity_entity_info() {
+  $info = array();
+  // Our custom video entity needs to be defined here.
+  // See http://drupal.org/node/1026420 and http://drupal.org/node/878804
+  // for more documentation.
+  $info['video'] = array(
+    // Tell FieldAPI that fields can be attached to our video entity
+     'fieldable' => TRUE,
+    'views controller class' => 'EntityDefaultViewsController',
+  );
+
+  return $info;
+}
+          </pre></code> 
+        </section>
+
+        <section>
+          <h2>Views Support</h2>
+          <pre><code class="php">
+function videoentity_entity_info() {
+  $info = array();
+  // Our custom video entity needs to be defined here.
+  // See http://drupal.org/node/1026420 and http://drupal.org/node/878804
+  // for more documentation.
+  $info['video'] = array(
+    'views controller class' => 'EntityDefaultViewsController',
+  );
+
+  return $info;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Exportability</h2>
+          <p>https://drupal.org/node/1021526</p>
+          <pre><code class="php">
+function videoentity_entity_info() {
+  $info = array();
+    'exportable' => TRUE,
+  );
+  return $info;
+}
+          </pre></code>
+        </section>
+
+        <section>
+          <h2>Revisions</h2> 
+          <pre><code class="php">
+$entity->is_new_revision = TRUE;
+          </pre></code>
+        </section>
+
+        <section>
+          <h3>Entity Metadata Wrappers</h3>
+          <p>https://drupal.org/node/1021556</p>
+
+          <pre><code class="php">
+$node->field_number[LANGUAGE_NONE][0]['value'];
+
+$wrapper = entity_metadata_wrapper('node', $node);
+$wrapper->field_number->value();
+
+$wrapper->author->mail->value();
+$wrapper->author->mail->set('blake@example.com');
+          </pre></code>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Entities in Contrib</h2>
+        </section>
+
+        <section>
+          File Entity
+          <img src="images/file_entity.jpg" />
+        </section>
+
+        <section>
+          Media
+          <img src="images/media.jpg" />
+        </section>
+
+        <section>
+          Commerce 
+          <img src="images/commerce.jpg" />
+        </section>
+
+        <section>
+          Organic Groups
+          <img src="images/og.jpg" />
+        </section>
+
+        <section>
+          Examples 
+          <img src="images/examples.jpg" />
+        </section>
+
+        <section>
+          Entity Operations
+          <img src="images/entity_operations.jpg" />
+        </section>
+
+        <section>
+          Entity Construction Kit
+          <img src="images/eck.jpg" />
+       </section>
+
+     </section>
+
+     <section>
+       <h1>Q&amp;A</h1>
+     </section>
 
 			</div>
 
