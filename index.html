@@ -38,10 +38,15 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-          <h2>An Intro to Entity API</h2>
+          <section>
+            <h2>An Intro to Entity API</h2>
 
-          <p><a href="http://www.lullabot.com/about/team/blake-hall">Blake Hall</a></p>
-          <p><img id="lullabot-logo" src="images/lullalogo_vertical-large.png" /></p>
+            <p><a href="http://www.lullabot.com/about/team/blake-hall">Blake Hall</a></p>
+            <p><img id="lullabot-logo" src="images/lullalogo_vertical-large.png" /></p>
+          </section>
+          <section>
+            <img src="images/drupalize_me.jpg" />
+          </section>
 				</section>
 
 				<section>
@@ -117,7 +122,7 @@
 
             <div class="box">
               <h2>Node</h2>
-              
+
               <div class="box">
                 <strong>Article</strong>
 
@@ -137,6 +142,7 @@
       <section>
         <section>
           <h2>Here comes the code</h2>
+          <iframe width="560" height="315" src="http://www.youtube.com/embed/5GZcCLfeH28?autoplay=1&autohide=1&loop=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
         </section>
 
         <section>
@@ -189,7 +195,7 @@ interface DrupalEntityControllerInterface {
         </section>
 
         <section>
-            <img src="images/entity_contrib.jpg" />  
+            <img src="images/entity_contrib.jpg" />
         </section>
 
         <section>
@@ -218,7 +224,7 @@ class Entity {
 
         <section>
           Entity controller class
-          
+
           <pre><code class="php">
 interface EntityAPIControllerInterface extends DrupalEntityControllerInterface {
 
@@ -313,13 +319,13 @@ function videoentity_entity_info() {
           <pre><code class="php">
 function file_entity_entity_property_info() {
   $info['file']['properties']['type'] = array(
-    'label' => t('File type'), 
-    'type' => 'token', 
-    'description' => t('The type of the file.'), 
-    'setter callback' => 'entity_property_verbatim_set', 
-    'setter permission' => 'administer files', 
-    'options list' => 'file_entity_type_get_names', 
-    'required' => TRUE, 
+    'label' => t('File type'),
+    'type' => 'token',
+    'description' => t('The type of the file.'),
+    'setter callback' => 'entity_property_verbatim_set',
+    'setter permission' => 'administer files',
+    'options list' => 'file_entity_type_get_names',
+    'required' => TRUE,
     'schema field' => 'type',
   );
 
@@ -344,7 +350,7 @@ function videoentity_entity_info() {
 
   return $info;
 }
-          </pre></code> 
+          </pre></code>
         </section>
 
         <section>
@@ -378,7 +384,7 @@ function videoentity_entity_info() {
         </section>
 
         <section>
-          <h2>Revisions</h2> 
+          <h2>Revisions</h2>
           <pre><code class="php">
 $entity->is_new_revision = TRUE;
           </pre></code>
@@ -416,7 +422,7 @@ $wrapper->author->mail->set('blake@example.com');
         </section>
 
         <section>
-          Commerce 
+          Commerce
           <img src="images/commerce.jpg" />
         </section>
 
@@ -426,7 +432,7 @@ $wrapper->author->mail->set('blake@example.com');
         </section>
 
         <section>
-          Examples 
+          Examples
           <img src="images/examples.jpg" />
         </section>
 
